@@ -66,7 +66,16 @@ body {
 }
 
 .visually-hidden {
-  position: absolute;
+  position: absolute !important;
+  clip: rect(1px 1px 1px 1px); /* IE6, IE7 */
+  clip: rect(1px, 1px, 1px, 1px);
+  padding: 0 !important;
+  border: 0 !important;
+  height: 1px !important;
+  width: 1px !important;
+  overflow: hidden;
+}
+/*position: absolute;
   width: 1px;
   height: 1px;
   margin: -1px;
@@ -78,8 +87,7 @@ body {
   clip: rect(0 0 0 0);
   overflow: hidden;
   outline: 0;
-  outline-offset: 0;
-}
+  outline-offset: 0;*/
 
 /*========== Header ===============*/
 
@@ -277,9 +285,7 @@ body {
   background-color: var(--accent-color);
   color: var(--link-white-color);
 
-  transition-property: var(--accent-color);
-  transition-duration: 250ms;
-  transition-timing-function: var(--transition-timing-function);
+  transition: background-color 250ms var(--transition-timing-function);
 }
 
 .hero-section-btn:hover,
@@ -684,6 +690,15 @@ body {
   border-radius: 4px;
 }
 
+.subscroption-form::placeholder {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.25;
+  letter-spacing: 0.03em;
+
+  color: rgba(255, 255, 255, 0.6);
+}
+
 .subscription-btn {
   position: relative;
   display: inline-flex;
@@ -858,7 +873,7 @@ body {
     1px 4px 6px rgba(0, 0, 0, 0.16);
 }
 
-/*=============== Modal wimdow ==================*/
+/*=============== Modal window ==================*/
 
 .backdrop {
   position: fixed;
@@ -922,7 +937,7 @@ body {
   pointer-events: none;
 }
 
-/*-----------------------Modal form------------------*/
+/*==========================Modal form-=====================*/
 
 .modal-form-title {
   font-weight: 700;
@@ -957,6 +972,8 @@ body {
   border-radius: 4px;
   padding-left: 42px;
   transition: border-color 250ms var(--transition-timing-function);
+  cursor: pointer;
+  transition: border-color 250ms var(--transition-timing-function);
 }
 
 .modal-input-icon {
@@ -968,14 +985,18 @@ body {
   width: 18px;
   height: 18px;
   fill: var(--title-color);
+
+  transition: fill 250ms var(--transition-timing-function);
 }
+
 .modal-form-input-wrapper {
   position: relative;
   display: block;
   margin-top: 4px;
 }
 
-.modal-form-input:focus {
+.modal-form-input:focus,
+.modal-form-input:hover {
   border-color: var(--accent-color);
   outline: none;
 }
@@ -992,6 +1013,8 @@ body {
   padding: 12px 16px;
   margin-top: 4px;
   resize: none;
+
+  transition: border-color 250ms var(--transition-timing-function);
 }
 
 .modal-form-message::placeholder {
@@ -1003,7 +1026,67 @@ body {
   color: rgba(117, 117, 117, 0.5);
 }
 
-.modal-form-message:focus {
+.modal-form-message:focus,
+.modal-form-message:hover {
   border-color: var(--accent-color);
   outline: none;
+}
+
+.modal-form-checkbox-policy::before {
+  content: '';
+  display: inline-block;
+  vertical-align: middle;
+  width: 16px;
+  height: 15px;
+  background-image: url(../images/empty-check.svg);
+  margin-right: 8.4px;
+  cursor: pointer;
+
+  transition: background-image 250ms var(--transition-timing-function);
+}
+
+.modal-form-checkbox:checked + .modal-form-checkbox-policy::before {
+  background-image: url(../images/icon-check.svg);
+}
+
+.modal-form-checkbox-policy {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.71;
+  letter-spacing: 0.03em;
+  margin-bottom: 30px;
+
+  color: var(--link-grey-color);
+}
+
+.modal-form-policy-link {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.71;
+  letter-spacing: 0.03em;
+  text-decoration-line: underline;
+
+  color: var(--accent-color);
+}
+
+.modal-form-btn {
+  align-self: center;
+  border-radius: 4px;
+  padding: 10px 55px;
+  display: inline-block;
+  min-width: 200px;
+  border: 1px solid transparent;
+
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 1.87;
+
+  letter-spacing: 0.06em;
+  cursor: pointer;
+  text-align: center;
+
+  background-color: var(--accent-color);
+  color: var(--link-white-color);
+
+  transition: background-color 250ms var(--transition-timing-function);
 }
